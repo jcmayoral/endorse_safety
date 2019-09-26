@@ -1,5 +1,6 @@
 <launch>
   <node name="zone_detection" pkg="endorse_safety" type="cluster_zone_detection" />
   <node name="cluster_detection" pkg="endorse_safety" type="endorse_cluster_search" />
+  <include file="$(find rslidar_pointcloud)/launch/rs_lidar_16.launch" />
    <node pkg="tf" type="static_transform_publisher" name="base2rslidar" args="1.1 0. -.75 1.57 0 0 'rslidar' 'base_link' 100"/>
 </launch>
