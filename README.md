@@ -3,8 +3,10 @@
 
 ## RSLidar
 IP Address : 192.168.1.200
+
 PC Address : 192.168.1.102
 
-download and build
-https://github.com/RoboSense-LiDAR/ros_rslidar
+download and build https://github.com/RoboSense-LiDAR/ros_rslidar
 
+## Lunach file
+Prepared for DEMO 30.9.2019 at FER
