@@ -8,5 +8,5 @@ PC Address : 192.168.1.102
 
 download and build https://github.com/RoboSense-LiDAR/ros_rslidar
 
-## Launach file
+## Launch file
 Prepared for DEMO 30.9.2019 at FER
