@@ -1,6 +1,8 @@
 <launch>
   <node name="zone_detection" pkg="endorse_safety" type="cluster_zone_detection" >
-	<remap from="/vector_prediction" to="/pointcloud_lidar_processing/detected_objects"/>
+    <remap from="/vector_prediction" to="/pointcloud_lidar_processing/detected_objects"/>
+  </node>
+  <node name="pointwise_detection" pkg="endorse_safety" type="pointwise_detection" >
   </node>
   <!--node name="cluster_detection" pkg="endorse_safety" type="endorse_cluster_search" >
 	<remap from="/rslidar_points" to="/velodyne_points"/>

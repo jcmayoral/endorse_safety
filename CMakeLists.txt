@@ -203,3 +203,6 @@ target_link_libraries(endorse_cluster_search ${catkin_LIBRARIES})
 
 add_executable(cluster_zone_detection src/cluster_zone_detection.cpp)
 target_link_libraries(cluster_zone_detection ${catkin_LIBRARIES})
+
+add_executable(pointwise_detection src/pointwise_detection.cpp)
+target_link_libraries(pointwise_detection ${catkin_LIBRARIES})
