@@ -26,6 +26,7 @@ void vector_prediction_callback(const geometry_msgs::PoseArrayConstPtr msg)
     predicted_position = *msg;
 }
 
+
 int main(int argc, char** argv)
 {
     ros::init(argc, argv, "cluster_zone_detection");
@@ -35,6 +36,7 @@ int main(int argc, char** argv)
     ros::Publisher zone1_pub=nh.advertise<std_msgs::Int8>("zone1_detection", 1000);
     ros::Publisher marker_pub = nh.advertise<visualization_msgs::MarkerArray>("visualization_marker", 1000);
     //predicted_position.x = -10;
+
     ros::Rate loop_rate(10);
     while (nh.ok()) 
     {
@@ -44,7 +46,7 @@ int main(int argc, char** argv)
         visualization_msgs::MarkerArray markerarray;
         visualization_msgs::Marker marker;
         marker.header.frame_id = "velodyne";
-        marker.header.stamp = ros::Time();
+        marker.header.stamp = ros::Time::now();
         marker.ns = "zone1";
         marker.id = 0;
         marker.type = visualization_msgs::Marker::CYLINDER;
@@ -60,13 +62,18 @@ int main(int argc, char** argv)
         marker.scale.y = 1.5;
         marker.scale.z = 1.5;
 
+        if (predicted_position.poses.size() ==0 ){
+            marker.action = visualization_msgs::Marker::DELETEALL;
+            markerarray.markers.push_back(marker);
+        }
+
 
         for (auto & it : predicted_position.poses){
             //check if cluster centroid enters zone 1, zone 2 or zone 3
             double R_distance = sqrt(pow(it.position.x-marker.pose.position.x,2)+pow(it.position.y-marker.pose.position.y,2));
             marker.pose.position = it.position;
 
-            if(R_distance < 2 && R_distance > 1.5)
+            if(R_distance < 3 && R_distance > 1.5)
             {
                 marker.color.a = 0.7;
                 marker.color.r = 1.0;
